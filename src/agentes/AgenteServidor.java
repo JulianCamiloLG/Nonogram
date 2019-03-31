@@ -23,6 +23,10 @@ public class AgenteServidor extends Agent {
     private ComportamientoNonogramaNormal comportamientoNormal;
     private ComportamientoNonogramaInverso comportamientoInverso;
 
+    /**
+     * Método sobre carga del agente, que decide el tipo de comportamiento
+     * de acuerdo al escogido por el usuario en la ejecución
+     */
     @Override
     protected void setup() {
 
@@ -45,6 +49,9 @@ public class AgenteServidor extends Agent {
         System.out.println("Gracias, vuelve pronto");
     }
 
+    /**
+     * Clase que define el comportamiento para un nonograma normal
+     */
     public class ComportamientoNonogramaNormal extends SimpleBehaviour {
 
         private final String archivo;
@@ -55,6 +62,10 @@ public class AgenteServidor extends Agent {
             this.archivo = archivo;
         }
 
+        /**
+         * Método encargado de abrir y leer el archivo donde esta el nanograma
+         * creando los valores en las filas y las columnas
+         */
         private void leerArchivo() {
             LinkedList<String> valores = new LinkedList();
             File file = new File("C:\\Users\\JulianCamilo\\Documents\\NetBeansProjects\\Nonograma\\src\\archivos\\" + archivo);
@@ -88,6 +99,9 @@ public class AgenteServidor extends Agent {
 //#############################################################################################################    
 //#############################################################################################################    
 
+    /**
+     * Clase encargada del comportamiento para un nanograma inverso
+     */
     public class ComportamientoNonogramaInverso extends SimpleBehaviour {
 
         private final String archivo;
@@ -97,7 +111,11 @@ public class AgenteServidor extends Agent {
         public ComportamientoNonogramaInverso(String archivo) {
             this.archivo = archivo;
         }
-
+        
+        /**
+         * Método encargado de abrir y leer el archivo  del nanograma inverso
+         * creando una lista preliminar con las filas
+         */
         private void leerArchivo() {
             LinkedList<String> filas = new LinkedList();
             File file = new File("C:\\Users\\JulianCamilo\\Documents\\NetBeansProjects\\Nonograma\\src\\archivos\\" + archivo);
@@ -109,26 +127,31 @@ public class AgenteServidor extends Agent {
             } catch (FileNotFoundException ex) {
                 System.out.println("No se encontro el archivo especificado");
             }
-            System.out.println(filas);
             llenarMatriz(filas);
         }
 
+        /**
+         * Inicializa la matriz dividiendo cada valor de fila en la lista de filas
+         * en caracteres para las columnas
+         * @param filas la lista de todas las filas que sera dividida en caracters individuales
+         */
         private void llenarMatriz(LinkedList<String> filas) {
             this.limiteMatriz = filas.size();
             this.matriz = new char[limiteMatriz][limiteMatriz];
-            int cont=0;
+            int cont = 0;
             for (String valore : filas) {
-               for (int i = 0; i < valore.length(); i++) {
-                    matriz[cont][i]=valore.charAt(i);
+                for (int i = 0; i < valore.length(); i++) {
+                    matriz[cont][i] = valore.charAt(i);
                 }
-                cont++; 
+                cont++;
             }
-                
+
             imprimirMatriz();
         }
-        
-        
 
+        /**
+         * Método encargado de mostrar como queda finalmente la matriz
+         */
         public void imprimirMatriz() {
             for (int i = 0; i < limiteMatriz; i++) {
                 for (int j = 0; j < limiteMatriz; j++) {
