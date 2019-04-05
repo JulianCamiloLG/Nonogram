@@ -11,8 +11,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,8 +22,8 @@ public class AgenteServidor extends Agent {
     private ComportamientoNonogramaInverso comportamientoInverso;
 
     /**
-     * Método sobre carga del agente, que decide el tipo de comportamiento
-     * de acuerdo al escogido por el usuario en la ejecución
+     * Método sobre carga del agente, que decide el tipo de comportamiento de
+     * acuerdo al escogido por el usuario en la ejecución
      */
     @Override
     protected void setup() {
@@ -68,7 +66,7 @@ public class AgenteServidor extends Agent {
          */
         private void leerArchivo() {
             LinkedList<String> valores = new LinkedList();
-            File file = new File("C:\\Users\\JulianCamilo\\Documents\\NetBeansProjects\\Nonograma\\src\\archivos\\" + archivo);
+            File file = new File("./archivos/"+archivo);
             try {
                 Scanner lector = new Scanner(file);
                 while (lector.hasNextLine()) {
@@ -111,29 +109,32 @@ public class AgenteServidor extends Agent {
         public ComportamientoNonogramaInverso(String archivo) {
             this.archivo = archivo;
         }
-        
+
         /**
-         * Método encargado de abrir y leer el archivo  del nanograma inverso
+         * Método encargado de abrir y leer el archivo del nanograma inverso
          * creando una lista preliminar con las filas
          */
         private void leerArchivo() {
             LinkedList<String> filas = new LinkedList();
-            File file = new File("C:\\Users\\JulianCamilo\\Documents\\NetBeansProjects\\Nonograma\\src\\archivos\\" + archivo);
+            File file = new File("./archivos/"+archivo);
             try {
                 Scanner lector = new Scanner(file);
                 while (lector.hasNext()) {
                     filas.add(lector.next());
                 }
+                llenarMatriz(filas);
             } catch (FileNotFoundException ex) {
                 System.out.println("No se encontro el archivo especificado");
             }
-            llenarMatriz(filas);
+
         }
 
         /**
-         * Inicializa la matriz dividiendo cada valor de fila en la lista de filas
-         * en caracteres para las columnas
-         * @param filas la lista de todas las filas que sera dividida en caracters individuales
+         * Inicializa la matriz dividiendo cada valor de fila en la lista de
+         * filas en caracteres para las columnas
+         *
+         * @param filas la lista de todas las filas que sera dividida en
+         * caracters individuales
          */
         private void llenarMatriz(LinkedList<String> filas) {
             this.limiteMatriz = filas.size();
