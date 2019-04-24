@@ -11,6 +11,8 @@ Algoritmo:
 package solucionador;
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,6 +21,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 /**
  *
@@ -36,37 +39,49 @@ public class solver {
 
     public static void main(String[] args) {
         // Lectura, aquí entra juli
-        final InputReader in = new InputReader(System.in);
+        //final InputReader in = new InputReader(System.in);
         final OutputWriter out = new OutputWriter(System.out);
         // filas y columnas se deberian contar del archivo
-        F = in.readInt();
-        C = in.readInt();
+        //F = in.readInt();
+        //C = in.readInt();
         long tiempoInicial = System.currentTimeMillis();
         {
+            LinkedList<String> valores = new LinkedList();
+            File file = new File("./archivos/"+"copa.txt");
+            try {
+                Scanner lector = new Scanner(file);
+                while (lector.hasNextLine()) {
+                    valores.add(lector.nextLine());
+                }
+            } catch (FileNotFoundException ex) {
+                System.out.println("No se encontro el archivo especificado");
+            }
+            F=valores.size()/2;
+            C=valores.size()/2;
             // lectura filas
             filas = new int[F][];
             for (int fila = 0; fila < F; fila++) {
-                String[] linea = in.readLine().split(" ");
-                filas[fila] = new int[linea.length];
-                for (int i = 0; i < linea.length; i++) {
-                    filas[fila][i] = Integer.parseInt(linea[i]);
+            //    String[] linea = in.readLine().split(" ");
+                filas[fila] = new int[valores.get(fila).length()];
+                for (int i = 0; i < valores.get(fila).length(); i++) {
+                    filas[fila][i] = Integer.parseInt(valores.get(i));
                 }
             }
             // lectura columnas
             columnas = new int[C][];
             for (int columna = 0; columna < C; columna++) {
-                String[] linea = in.readLine().split(" ");
-                columnas[columna] = new int[linea.length];
-                for (int i = 0; i < linea.length; i++) {
-                    columnas[columna][i] = Integer.parseInt(linea[i]);
+            //    String[] linea = in.readLine().split(" ");
+                columnas[columna] = new int[valores.get(columna).length()];
+                for (int i = 0; i < valores.get(columna).length(); i++) {
+                    columnas[columna][i] = Integer.parseInt(valores.get(i));
                 }
             }
             //Representación inicial tablero
             tabla = new long[F];
             for (int fila = 0; fila < F; fila++) {
-                String s = in.readLine();
+            //    String s = in.readLine();
                 for (int columna = 0; columna < C; columna++) {
-                    if (s.charAt(columna) == BLANCO) {
+                    if (valores.get(fila).charAt(columna) == BLANCO) {
                         continue;
                     }
                     //operacion a nivel de bits
