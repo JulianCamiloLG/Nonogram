@@ -41,30 +41,30 @@ public class Nonograma {
     }
     
     /**
-     * Método para lanzar el agente servidor en modo de
+     * Método para lanzar el agente normal en modo de
      * nonograma normal
      * param[1]= nombre-agente:clase-agente (parametros-agente separados por comas)
      * @param ruta la ruta o el nombre del archivo a resolver
      */
     public static void resolverNonograma(String ruta){
-        String[] param = new String[2];
+        String[] param = new String[1];
         param[0] = "-gui";
-        param[1] = "AgenteServidor:agentes.AgenteServidor("
-                + ruta+",0)";
+        param[1] = "AgenteNormal:agentes.AgenteNormal("
+                + ruta+")";
         Boot.main(param);
         
     }
     
     /**
-     * Método para lanzar el agente servidor en modo de
+     * Método para lanzar el agente inverso en modo de
      * nonograma inverso
      * @param ruta La ruta del nonograma inverso a resolver
      */
     public static void resolverInverso(String ruta){
-        String[] param = new String[2];
+        String[] param = new String[1];
         param[0] = "-gui";
-        param[1] = "AgenteServidor:agentes.AgenteServidor("
-                + ruta+",1)";
+        param[1] = "AgenteInverso:agentes.AgenteInverso("
+                + ruta+")";
         Boot.main(param);
     }
     
