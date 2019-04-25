@@ -58,7 +58,7 @@ public class AgenteNormal extends Agent {
         long[] tablero;
         long[][] matrizPermutaciones;
         int[][] valorColumna, columnaIx;
-        static final char VACIO = '0', LLENO = 'X';
+        static final char VACIO = '.', LLENO = '0';
 
         public ComportamientoNonogramaNormal(String archivo) {
             this.archivo = archivo;

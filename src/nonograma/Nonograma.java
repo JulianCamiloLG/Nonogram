@@ -47,7 +47,7 @@ public class Nonograma {
      * @param ruta la ruta o el nombre del archivo a resolver
      */
     public static void resolverNonograma(String ruta){
-        String[] param = new String[1];
+        String[] param = new String[2];
         param[0] = "-gui";
         param[1] = "AgenteNormal:agentes.AgenteNormal("
                 + ruta+")";
@@ -61,7 +61,7 @@ public class Nonograma {
      * @param ruta La ruta del nonograma inverso a resolver
      */
     public static void resolverInverso(String ruta){
-        String[] param = new String[1];
+        String[] param = new String[2];
         param[0] = "-gui";
         param[1] = "AgenteInverso:agentes.AgenteInverso("
                 + ruta+")";
